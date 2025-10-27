@@ -7,6 +7,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import MessageCard from '../components/MessageCard';
 import Footer from '../components/Footer';
+import TextType from '../components/TextType';
 import { Link } from 'react-router-dom';
 
 // Backend API configuration
@@ -66,11 +67,18 @@ const Home = () => {
       <main className="bg-[linear-gradient(to_right,#80808033_1px,transparent_1px),linear-gradient(to_bottom,#80808033_1px,transparent_1px)] bg-[size:70px_70px] pt-24 pb-24">
         <section className="relative flex min-h-[40dvh] flex-col overflow-hidden pt-32 pb-24  sm:py-12 items-center  px-5 md:pt-[100px] md:pb-[50px] ">
           <div className="mx-auto w-full max-w-[800px]">
-            <h1 className="text-center text-3xl md:text-6xl font-bold mb-12">
-              A Place for the Messages <br />
-              <span>That Never Reached Them.</span>
-              <span className="animate-pulse">_</span>
+            <h1 className="text-center text-3xl md:text-6xl font-bold mb-8">
+              A Place for the Messages
             </h1>
+            <h2 className='text-center text-3xl md:text-6xl font-bold mb-12'>
+              <TextType
+                text={["That never delivered.", "The ones you never send.", "Say What Was Left Unsaid."]}
+                typingSpeed={75}
+                pauseDuration={1500}
+                showCursor={true}
+                cursorCharacter="|"
+              />
+            </h2>
 
             {/* Search Input */}
             <div className="mb-12 w-full max-w-2xl mx-auto relative">
