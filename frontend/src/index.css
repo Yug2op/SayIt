@@ -1,0 +1,172 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Neobrutalism Base Styles */
+@layer base {
+  * {
+    @apply transition-all duration-200;
+    box-sizing: border-box;
+  }
+
+  html,
+  body {
+    @apply bg-light-bg text-light-text dark:bg-dark-bg dark:text-dark-text;
+    font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1.5;
+  }
+
+  /* Neobrutalism Typography */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-bold tracking-tight;
+    font-family: 'Space Grotesk', sans-serif;
+  }
+
+  h1 {
+    @apply text-4xl md:text-5xl;
+  }
+
+  h2 {
+    @apply text-3xl md:text-4xl;
+  }
+
+  h3 {
+    @apply text-2xl md:text-3xl;
+  }
+
+  h4 {
+    @apply text-xl md:text-2xl;
+  }
+
+  h5 {
+    @apply text-lg md:text-xl;
+  }
+
+  h6 {
+    @apply text-base md:text-lg;
+  }
+
+  /* Neobrutalism Elements */
+  button,
+  a,
+  select {
+    @apply rounded-none border-2 border-black shadow-neo hover:shadow-neo-hover active:shadow-neo-pressed active:translate-x-0.5 active:translate-y-0.5 transition-all duration-200;
+  }
+
+  button,
+  a {
+    @apply px-4 py-2 bg-white hover:bg-gray-100 active:bg-gray-200 text-black font-medium;
+  }
+
+  input,
+  textarea,
+  select {
+    @apply px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-primary/50;
+  }
+
+  /* Ensure all text elements inherit the theme colors */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  span,
+  a,
+  li,
+  td,
+  th,
+  label,
+  input,
+  textarea,
+  select,
+  button {}
+
+  /* Neobrutalism Scrollbar */
+  ::-webkit-scrollbar {
+    @apply w-2 h-2;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-light-card;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-primary border border-black;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-secondary;
+  }
+}
+
+/* Neobrutalism Components */
+@layer components {
+  .card {
+    @apply bg-white border-2 border-black p-6 shadow-neo hover:shadow-neo-hover transition-all duration-200;
+  }
+
+  .btn {
+    @apply px-6 py-2 font-bold text-center uppercase tracking-wider transition-all duration-200;
+    @apply hover:shadow-neo-hover active:shadow-neo-pressed active:translate-x-0.5 active:translate-y-0.5;
+  }
+
+  .btn-primary {
+    @apply bg-primary text-white hover:bg-primary/90 active:bg-primary/80;
+  }
+
+  .btn-secondary {
+    @apply bg-secondary text-black hover:bg-secondary/90 active:bg-secondary/80;
+  }
+}
+
+/* Animation utilities */
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 0.3s ease-out;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.3s ease-out;
+  }
+
+  .animate-press {
+    animation: press 0.2s ease-out;
+  }
+}
+
+/* Neobrutalism Effects */
+.glow-effect {
+  position: relative;
+  z-index: 1;
+  transition: all 0.2s ease;
+}
+
+.glow-effect::after {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  right: -4px;
+  bottom: -4px;
+  background: #000;
+  z-index: -1;
+  transition: all 0.2s ease;
+}
+
+.glow-effect:hover {
+  transform: translate(2px, 2px);
+}
+
+.glow-effect:hover::after {
+  transform: translate(-2px, -2px);
+}
