@@ -178,17 +178,17 @@ function MessageForm() {
   return (
     <div className="min-h-screen bg-teal">
       {/* Navigation */}
-      <nav className="fixed left-0 top-0 z-20 w-full h-[70px] border-b-4 border-black bg-gray-100 px-5">
+      <nav className="fixed left-0 top-0 z-20 w-full h-[60px] sm:h-[70px] border-b-4 border-black bg-gray-100 px-3 sm:px-5">
         <div className="mx-auto flex h-full w-full max-w-[1300px] items-center justify-between">
-          <div className="flex items-center gap-4 xl:gap-10">
-            <a className="text-[22px] w-fit px-4 flex bg-orange-500 hover:bg-orange-400 text-black items-center justify-center font-bold" href="/">
+          <div className="flex items-center gap-2 sm:gap-4 xl:gap-10">
+            <a className="text-lg sm:text-[22px] w-fit px-2 sm:px-4 flex bg-orange-500 hover:bg-orange-400 text-black items-center justify-center font-bold rounded-sm" href="/">
               SayIt
             </a>
           </div>
         </div>
       </nav>
-      <div className="max-w-2xl mx-auto p-6 bg-white border-2 border-black shadow-neo mt-28">
-        <h2 className="text-3xl font-bold mb-6 text-black">Share Your Thoughts</h2>
+      <div className="max-w-2xl mx-auto p-2 sm:p-6 bg-white border-2 border-black shadow-neo mt-20 sm:mt-2 md:mt-28">
+        <h2 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 text-black">Share Your Thoughts</h2>
 
         {success && (
           <div className="mb-4 p-3 bg-green-100 text-green-700 flex items-center">
@@ -219,9 +219,9 @@ function MessageForm() {
           </div>
         )}
 
-        <form onSubmit={handleSubmit} className="space-y-6">
+<form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
           <div>
-            <label htmlFor="recipient" className="block text-lg font-bold mb-2 text-black">
+            <label htmlFor="recipient" className="block text-base sm:text-lg font-bold mb-2 text-black">
               To: <span className="font-normal text-black/70">(Who is this message for?)</span>
             </label>
             <input
@@ -231,17 +231,17 @@ function MessageForm() {
               onChange={(e) => setRecipient(e.target.value)}
               placeholder="e.g., Everyone, My future self, Someone special..."
               maxLength={50}
-              className="w-full px-4 py-3 border-2 border-black focus:outline-none focus:ring-2 focus:ring-pink-300"
+              className="w-full px-3 sm:px-4 py-2 sm:py-3 text-base border-2 border-black focus:outline-none focus:ring-2 focus:ring-pink-300"
               disabled={loading || isRateLimited}
             />
           </div>
 
           <div>
             <div className="flex justify-between items-center mb-2">
-              <label htmlFor="content" className="block text-lg font-bold text-black">
+              <label htmlFor="content" className="block text-base sm:text-lg font-bold text-black">
                 Your Message:
               </label>
-              <span className={`text-sm ${remainingChars < 20 ? 'text-red-500' : 'text-gray-500'}`}>
+              <span className={`text-xs sm:text-sm ${remainingChars < 20 ? 'text-red-500' : 'text-gray-500'}`}>
                 {remainingChars} characters remaining
               </span>
             </div>
@@ -251,38 +251,39 @@ function MessageForm() {
               onChange={(e) => setContent(e.target.value)}
               placeholder="Write your message here..."
               maxLength={maxLength}
-              rows={4}
-              className="w-full px-4 py-3 border-2 border-black focus:outline-none focus:ring-2 focus:ring-pink-300"
+              rows={3}
+              className="w-full px-3 sm:px-4 py-2 sm:py-3 text-base border-2 border-black focus:outline-none focus:ring-2 focus:ring-pink-300 resize-none"
               disabled={loading || isRateLimited}
             />
           </div>
 
           {/* Terms and Conditions Checkbox */}
-<div className="flex items-start mt-4 mb-6">
-  <div className="flex items-center h-5">
-    <input
-      id="terms"
-      type="checkbox"
-      checked={acceptedTerms}
-      onChange={(e) => setAcceptedTerms(e.target.checked)}
-      className="w-4 h-4 border-2 border-black rounded focus:ring-pink-300"
-      disabled={loading || isRateLimited}
-    />
-  </div>
-  <div className="ml-3 text-sm">
-    <label htmlFor="terms" className="font-medium text-gray-700">
-      I agree to the{' '}
-      <a href="/terms" target="_blank" rel="noopener noreferrer" className="text-pink-600 hover:underline">
-        Terms and Conditions
-      </a>
-    </label>
-  </div>
-</div>
-{!acceptedTerms && (
-  <p className="mt-1 text-sm text-red-600 -mt-4 mb-4">
-    You must accept the terms and conditions to send a message
-  </p>
-)}
+          <div className="flex items-start mt-4 mb-4 sm:mb-6">
+            <div className="flex items-center h-5">
+              <input
+                id="terms"
+                type="checkbox"
+                checked={acceptedTerms}
+                onChange={(e) => setAcceptedTerms(e.target.checked)}
+                className="w-4 h-4 border-2 border-black rounded focus:ring-pink-300"
+                disabled={loading || isRateLimited}
+              />
+            </div>
+            <div className="ml-3 text-sm">
+              <label htmlFor="terms" className="font-medium text-gray-700">
+                I agree to the{' '}
+                <a href="/terms" target="_blank" rel="noopener noreferrer" className="text-pink-600 hover:underline">
+                  Terms and Conditions
+                </a>
+              </label>
+            </div>
+          </div>
+
+          {!acceptedTerms && (
+            <p className="mt-1 text-sm text-red-600 -mt-2 mb-2 sm:mb-4">
+              You must accept the terms and conditions to send a message
+            </p>
+          )}
 
 {/* Submit Button */}
 <button

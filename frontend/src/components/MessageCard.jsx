@@ -84,37 +84,37 @@ function MessageCard({ message }) {
 
   return (
     <motion.div
-      className="w-full border-2 border-black p-4 bg-white cursor-pointer shadow-md hover:shadow-lg transition-shadow"
+      className="w-full border-2 border-black p-3 sm:p-4 bg-white cursor-pointer shadow-md hover:shadow-lg transition-shadow"
       whileHover={{ y: -2 }}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
     >
       {/* Header with recipient and mail icon */}
-      <div className="w-full flex justify-between items-center text-base font-semibold text-black pb-1">
+      <div className="w-full flex justify-between items-center text-sm sm:text-base font-semibold text-black pb-1">
         <div className="flex justify-start items-center gap-2">
           <p>To:</p>
-          <p>{message.recipient || 'Anonymous'}</p>
+          <p className="truncate">{message.recipient || 'Anonymous'}</p>
         </div>
-        <Mail className="h-5 w-5" />
+        <Mail className="h-4 w-4 sm:h-5 sm:w-5 flex-shrink-0" />
       </div>
 
       {/* Message content with dynamic background color */}
       <div
-        className="w-full p-4 min-h-[200px] max-h-[200px] overflow-hidden flex items-center justify-center text-center rounded"
+        className="w-full p-3 sm:p-4 min-h-[150px] sm:min-h-[180px] md:min-h-[200px] max-h-[150px] sm:max-h-[180px] md:max-h-[200px] overflow-hidden flex items-center justify-center text-center rounded"
         style={{
           backgroundColor: messageColor,
           color: textColor,
           border: '2px solid #000'
         }}
       >
-        <p className="text-lg font-medium break-words w-full">
+        <p className="text-sm sm:text-base md:text-lg font-medium break-words w-full leading-relaxed">
           {message.content || 'No message content'}
         </p>
       </div>
 
       {/* Date at bottom */}
-      <div className="text-xs text-center w-full pt-2">
+      <div className="text-xs sm:text-sm text-center w-full pt-2">
         {formatDate(message.createdAt || new Date())}
       </div>
     </motion.div>
