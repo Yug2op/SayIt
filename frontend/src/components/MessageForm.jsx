@@ -187,135 +187,135 @@ function MessageForm() {
           </div>
         </div>
       </nav>
-      <div className="max-w-2xl mx-auto p-2 sm:p-6 bg-white border-2 border-black shadow-neo mt-20 sm:mt-2 md:mt-28">
-        <h2 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 text-black">Share Your Thoughts</h2>
-
-        {success && (
-          <div className="mb-4 p-3 bg-green-100 text-green-700 flex items-center">
-            <CheckCircle className="mr-2" />
-            Message sent successfully! Redirecting...
-          </div>
-        )}
-
-        {isRateLimited && (
-          <div className="mb-4 p-3 bg-yellow-100 text-yellow-700 flex items-center">
-            <Clock className="mr-2" />
-            You've reached the limit of {MAX_SUBMISSIONS} messages per hour. Please try again in {timeRemaining} minutes.
-          </div>
-        )}
-
-        {error && !isRateLimited && (
-          <div className="mb-4 p-3 bg-red-100 text-red-700 flex items-center">
-            <AlertCircle className="mr-2" />
-            {error}
-            {cleanVersion && (
-              <button
-                onClick={useCleanVersion}
-                className="ml-2 text-sm underline hover:text-red-900"
-              >
-                Use suggested version
-              </button>
-            )}
-          </div>
-        )}
-
-<form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
-          <div>
-            <label htmlFor="recipient" className="block text-base sm:text-lg font-bold mb-2 text-black">
-              To: <span className="font-normal text-black/70">(Who is this message for?)</span>
-            </label>
-            <input
-              type="text"
-              id="recipient"
-              value={recipient}
-              onChange={(e) => setRecipient(e.target.value)}
-              placeholder="e.g., Everyone, My future self, Someone special..."
-              maxLength={50}
-              className="w-full px-3 sm:px-4 py-2 sm:py-3 text-base border-2 border-black focus:outline-none focus:ring-2 focus:ring-pink-300"
-              disabled={loading || isRateLimited}
-            />
-          </div>
-
-          <div>
-            <div className="flex justify-between items-center mb-2">
-              <label htmlFor="content" className="block text-base sm:text-lg font-bold text-black">
-                Your Message:
-              </label>
-              <span className={`text-xs sm:text-sm ${remainingChars < 20 ? 'text-red-500' : 'text-gray-500'}`}>
-                {remainingChars} characters remaining
-              </span>
+      <main className='bg-[linear-gradient(to_right,#80808033_1px,transparent_1px),linear-gradient(to_bottom,#80808033_1px,transparent_1px)] bg-[size:70px_70px] pt-8 sm:pt-24 pb-20 sm:pb-24 bg-pink-100'>
+        <div className="max-w-2xl mx-auto p-2 sm:p-6 bg-orange-200 border-2 border-black shadow-neo mt-20 sm:mt-2 md:mt-16">
+          <h2 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 text-black">Share Your Thoughts<span className="animate-pulse text-black">_</span></h2>
+          {success && (
+            <div className="mb-4 p-3 bg-green-100 text-green-700 flex items-center">
+              <CheckCircle className="mr-2" />
+              Message sent successfully! Redirecting...
             </div>
-            <textarea
-              id="content"
-              value={content}
-              onChange={(e) => setContent(e.target.value)}
-              placeholder="Write your message here..."
-              maxLength={maxLength}
-              rows={3}
-              className="w-full px-3 sm:px-4 py-2 sm:py-3 text-base border-2 border-black focus:outline-none focus:ring-2 focus:ring-pink-300 resize-none"
-              disabled={loading || isRateLimited}
-            />
-          </div>
+          )}
 
-          {/* Terms and Conditions Checkbox */}
-          <div className="flex items-start mt-4 mb-4 sm:mb-6">
-            <div className="flex items-center h-5">
+          {isRateLimited && (
+            <div className="mb-4 p-3 bg-yellow-100 text-yellow-700 flex items-center">
+              <Clock className="mr-2" />
+              You've reached the limit of {MAX_SUBMISSIONS} messages per hour. Please try again in {timeRemaining} minutes.
+            </div>
+          )}
+
+          {error && !isRateLimited && (
+            <div className="mb-4 p-3 bg-red-100 text-red-700 flex items-center">
+              <AlertCircle className="mr-2" />
+              {error}
+              {cleanVersion && (
+                <button
+                  onClick={useCleanVersion}
+                  className="ml-2 text-sm underline hover:text-red-900"
+                >
+                  Use suggested version
+                </button>
+              )}
+            </div>
+          )}
+
+          <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+            <div>
+              <label htmlFor="recipient" className="block text-base sm:text-lg font-bold mb-2 text-black">
+                To: <span className="font-normal text-black/70">(Who is this message for?)</span>
+              </label>
               <input
-                id="terms"
-                type="checkbox"
-                checked={acceptedTerms}
-                onChange={(e) => setAcceptedTerms(e.target.checked)}
-                className="w-4 h-4 border-2 border-black rounded focus:ring-pink-300"
+                type="text"
+                id="recipient"
+                value={recipient}
+                onChange={(e) => setRecipient(e.target.value)}
+                placeholder="e.g., Everyone, My future self, Someone special..."
+                maxLength={50}
+                className="w-full px-3 sm:px-4 py-2 sm:py-3 text-base border-2 border-black focus:outline-none focus:ring-2 focus:ring-pink-300 bg-red-100"
                 disabled={loading || isRateLimited}
               />
             </div>
-            <div className="ml-3 text-sm">
-              <label htmlFor="terms" className="font-medium text-gray-700">
-                I agree to the{' '}
-                <a href="/terms" target="_blank" rel="noopener noreferrer" className="text-pink-600 hover:underline">
-                  Terms and Conditions
-                </a>
-              </label>
+
+            <div>
+              <div className="flex justify-between items-center mb-2">
+                <label htmlFor="content" className="block text-base sm:text-lg font-bold text-black">
+                  Your Message:
+                </label>
+                <span className={`text-xs sm:text-sm ${remainingChars < 20 ? 'text-red-500' : 'text-gray-500'}`}>
+                  {remainingChars} characters remaining
+                </span>
+              </div>
+              <textarea
+                id="content"
+                value={content}
+                onChange={(e) => setContent(e.target.value)}
+                placeholder="Write your message here..."
+                maxLength={maxLength}
+                rows={3}
+                className="w-full px-3 sm:px-4 py-2 sm:py-3 text-base border-2 border-black focus:outline-none focus:ring-2 focus:ring-pink-300 resize-none bg-red-100"
+                disabled={loading || isRateLimited}
+              />
             </div>
-          </div>
 
-          {!acceptedTerms && (
-            <p className="mt-1 text-sm text-red-600 -mt-2 mb-2 sm:mb-4">
-              You must accept the terms and conditions to send a message
-            </p>
-          )}
+            {/* Terms and Conditions Checkbox */}
+            <div className="flex items-start mt-4 mb-4 sm:mb-6">
+              <div className="flex items-center h-5">
+                <input
+                  id="terms"
+                  type="checkbox"
+                  checked={acceptedTerms}
+                  onChange={(e) => setAcceptedTerms(e.target.checked)}
+                  className="w-4 h-4 border-2 border-black rounded focus:ring-pink-300"
+                  disabled={loading || isRateLimited}
+                />
+              </div>
+              <div className="ml-3 text-sm">
+                <label htmlFor="terms" className="font-medium text-gray-700">
+                  I agree to the{' '}
+                  <a href="/terms" target="_blank" rel="noopener noreferrer" className="text-pink-600  bg-red-200 hover:bg-red-100">
+                    Terms and Conditions
+                  </a>
+                </label>
+              </div>
+            </div>
 
-{/* Submit Button */}
-<button
-  type="submit"
-  disabled={loading || isRateLimited || !content.trim() || !recipient.trim() || !acceptedTerms}
-  className={`w-full flex items-center justify-center px-6 py-3 font-bold border-2 border-black transition-all ${
-    isRateLimited 
-      ? 'bg-gray-300 text-gray-500 cursor-not-allowed' 
-      : !acceptedTerms
-        ? 'bg-gray-200 text-gray-500 cursor-not-allowed'
-        : 'bg-pink-300 hover:bg-pink-200 text-black shadow-neo hover:shadow-neo-hover'
-  } ${loading ? 'opacity-70' : ''}`}
->
-  {loading ? (
-    <div className="flex items-center">
-      <svg className="animate-spin -ml-1 mr-2 h-5 w-5 text-black" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-      </svg>
-      Submitting...
-    </div>
-  ) : isRateLimited ? (
-    `Try again in ${timeRemaining} min`
-  ) : (
-    <>
-      <Send className="mr-2" size={20} />
-      Send Message
-    </>
-  )}
-</button>
-        </form>
-      </div>
+            {!acceptedTerms && (
+              <p className="mt-1 text-sm text-red-600 -mt-2 mb-2 sm:mb-4">
+                You must accept the terms and conditions to send a message
+              </p>
+            )}
+
+            {/* Submit Button */}
+            <button
+              type="submit"
+              disabled={loading || isRateLimited || !content.trim() || !recipient.trim() || !acceptedTerms}
+              className={`w-full flex items-center justify-center px-6 py-3 font-bold border-2 border-black transition-all ${isRateLimited
+                  ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                  : !acceptedTerms
+                    ? 'bg-gray-200 text-gray-500 cursor-not-allowed'
+                    : 'bg-pink-300 hover:bg-pink-200 text-black shadow-neo hover:shadow-neo-hover'
+                } ${loading ? 'opacity-70' : ''}`}
+            >
+              {loading ? (
+                <div className="flex items-center">
+                  <svg className="animate-spin -ml-1 mr-2 h-5 w-5 text-black" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
+                  Submitting...
+                </div>
+              ) : isRateLimited ? (
+                `Try again in ${timeRemaining} min`
+              ) : (
+                <>
+                  <Send className="mr-2" size={20} />
+                  Send Message
+                </>
+              )}
+            </button>
+          </form>
+        </div>
+      </main>
     </div>
   );
 }
