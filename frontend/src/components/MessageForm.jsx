@@ -13,6 +13,7 @@ function MessageForm() {
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
   const [cleanVersion, setCleanVersion] = useState(null);
+  const [errorField, setErrorField] = useState(null);
   const [submissionCount, setSubmissionCount] = useState(0);
   const [lastSubmissionTime, setLastSubmissionTime] = useState(null);
   const [timeRemaining, setTimeRemaining] = useState(null);
@@ -105,21 +106,25 @@ function MessageForm() {
 
     setError(null);
     setCleanVersion(null);
+    setErrorField(null);
     setSuccess(false);
 
     // Validation
     if (!content.trim()) {
       setError('Message cannot be empty');
+      setErrorField('content');
       return;
     }
 
     if (!recipient.trim()) {
       setError('Please specify who this message is for');
+      setErrorField('recipient');
       return;
     }
 
     if (content.length > maxLength) {
       setError(`Message must be ${maxLength} characters or less`);
+      setErrorField('content');
       return;
     }
 
@@ -153,11 +158,13 @@ function MessageForm() {
       console.error('Error submitting message:', err);
       if (err.response?.data) {
         setError(err.response.data.error || 'Failed to post message');
+        setErrorField(err.response.data.field || null);
         if (err.response.data.cleanVersion) {
           setCleanVersion(err.response.data.cleanVersion);
         }
       } else {
         setError('Network error. Please try again.');
+        setErrorField(null);
       }
     } finally {
       setLoading(false);
@@ -166,9 +173,14 @@ function MessageForm() {
 
   const useCleanVersion = () => {
     if (cleanVersion) {
-      setContent(cleanVersion);
+      if (errorField === 'content') {
+        setContent(cleanVersion);
+      } else if (errorField === 'recipient') {
+        setRecipient(cleanVersion);
+      }
       setCleanVersion(null);
       setError(null);
+      setErrorField(null);
     }
   };
 
@@ -231,7 +243,9 @@ function MessageForm() {
                 onChange={(e) => setRecipient(e.target.value)}
                 placeholder="e.g., Everyone, My future self, Someone special..."
                 maxLength={50}
-                className="w-full px-3 sm:px-4 py-2 sm:py-3 text-base border-2 border-black focus:outline-none focus:ring-2 focus:ring-pink-300 bg-red-100"
+                className={`w-full px-3 sm:px-4 py-2 sm:py-3 text-base border-2 focus:outline-none focus:ring-2 focus:ring-pink-300 ${
+                  errorField === 'recipient' ? 'bg-red-100 border-red-500' : 'bg-white border-black'
+                }`}
                 disabled={loading || isRateLimited}
               />
             </div>
@@ -252,7 +266,9 @@ function MessageForm() {
                 placeholder="Write your message here..."
                 maxLength={maxLength}
                 rows={3}
-                className="w-full px-3 sm:px-4 py-2 sm:py-3 text-base border-2 border-black focus:outline-none focus:ring-2 focus:ring-pink-300 resize-none bg-red-100"
+                className={`w-full px-3 sm:px-4 py-2 sm:py-3 text-base border-2 focus:outline-none focus:ring-2 focus:ring-pink-300 resize-none ${
+                  errorField === 'content' ? 'bg-red-100 border-red-500' : 'bg-white border-black'
+                }`}
                 disabled={loading || isRateLimited}
               />
             </div>

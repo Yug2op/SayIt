@@ -56,22 +56,34 @@ Text: "${text}"
  * Express middleware
  */
 async function profanityFilterMiddleware(req, res, next) {
-  const { content } = req.body;
+  const { content, recipient } = req.body;
 
-  if (!content) {
-    return res.status(400).json({
-      error: "Message content is required"
-    });
+  // Check message content
+  if (content) {
+    const contentResult = await checkProfanity(content);
+
+    if (contentResult.isProfane) {
+      return res.status(400).json({
+        error: "Your message contains inappropriate content",
+        reason: contentResult.reason,
+        cleanVersion: contentResult.cleanVersion,
+        field: "content"
+      });
+    }
   }
 
-  const result = await checkProfanity(content);
+  // Check recipient field
+  if (recipient) {
+    const recipientResult = await checkProfanity(recipient);
 
-  if (result.isProfane) {
-    return res.status(400).json({
-      error: "Your message contains inappropriate content",
-      reason: result.reason,
-      cleanVersion: result.cleanVersion,
-    });
+    if (recipientResult.isProfane) {
+      return res.status(400).json({
+        error: "The 'To' field contains inappropriate content",
+        reason: recipientResult.reason,
+        cleanVersion: recipientResult.cleanVersion,
+        field: "recipient"
+      });
+    }
   }
 
   next();
