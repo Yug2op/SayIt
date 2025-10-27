@@ -5,7 +5,9 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "dev": "nodemon server.js"
+    "dev": "nodemon server.js",
+    "build": "echo 'Backend built successfully'",
+    "install-all": "npm install && cd ../frontend && npm install"
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",
