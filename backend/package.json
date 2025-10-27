@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon server.js",
-    "build": "echo 'Backend built successfully'",
+    "build": "echo 'Backend built successfully'"
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",
