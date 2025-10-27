@@ -3,6 +3,9 @@ import axios from 'axios';
 import { Send, AlertCircle, CheckCircle, Clock, Link } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
+// Backend API configuration
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://sayit-65tz.onrender.com';
+
 function MessageForm() {
   const [content, setContent] = useState('');
   const [recipient, setRecipient] = useState('');
@@ -123,7 +126,7 @@ function MessageForm() {
     setLoading(true);
 
     try {
-      await axios.post('/api/messages', {
+      await axios.post(`${API_BASE_URL}/api/messages`, {
         content: content.trim(),
         recipient: recipient.trim()
       });

@@ -9,6 +9,9 @@ import MessageCard from '../components/MessageCard';
 import Footer from '../components/Footer';
 import { Link } from 'react-router-dom';
 
+// Backend API configuration
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://sayit-65tz.onrender.com';
+
 const Home = () => {
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -20,7 +23,7 @@ const Home = () => {
 
   const fetchMessages = async () => {
     try {
-      const response = await axios.get('/api/messages');
+      const response = await axios.get(`${API_BASE_URL}/api/messages`);
       setMessages(response.data.messages)
       setLoading(false);
     } catch (error) {
