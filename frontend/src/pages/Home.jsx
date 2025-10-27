@@ -46,7 +46,7 @@ const Home = () => {
 
 
   return (
-    <div className="min-h-screen bg-teal">
+    <div className="min-h-screen bg-purple-100">
       {/* Navigation */}
       <nav className="fixed left-0 top-0 z-20 w-full h-[70px] border-b-4 border-black bg-gray-100 px-5">
         <div className="mx-auto flex h-full w-full max-w-[1300px] items-center justify-between">
