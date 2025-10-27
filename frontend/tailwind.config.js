@@ -50,6 +50,13 @@ export default {
           '100%': { opacity: '1', transform: 'translateY(0)' },
         },
       },
+      boxShadow: {
+        'neo': '4px 4px 0px 0px rgba(0, 0, 0, 1)',
+        'neo-hover': '6px 6px 0px 0px rgba(0, 0, 0, 1)',
+        'neo-pressed': '2px 2px 0px 0px rgba(0, 0, 0, 1)',
+        'neo-lg': '8px 8px 0px 0px rgba(0, 0, 0, 1)',
+        'neo-xl': '12px 12px 0px 0px rgba(0, 0, 0, 1)',
+      },
     },
   },
   plugins: [],
