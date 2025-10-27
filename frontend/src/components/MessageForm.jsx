@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Send, AlertCircle, CheckCircle, Clock, Link } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link as RouterLink } from 'react-router-dom';
 
 // Backend API configuration
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://sayit-65tz.onrender.com';
@@ -199,8 +199,16 @@ function MessageForm() {
           </div>
         </div>
       </nav>
-      <main className='bg-[linear-gradient(to_right,#80808033_1px,transparent_1px),linear-gradient(to_bottom,#80808033_1px,transparent_1px)] bg-[size:70px_70px] pt-8 sm:pt-24 pb-20 sm:pb-24 bg-pink-100'>
-        <div className="max-w-2xl mx-auto p-2 sm:p-6 bg-orange-200 border-2 border-black shadow-neo mt-20 sm:mt-2 md:mt-16">
+      <main className='bg-[linear-gradient(to_right,#80808033_1px,transparent_1px),linear-gradient(to_bottom,#80808033_1px,transparent_1px)] bg-[size:70px_70px] pt-16 sm:pt-24 pb-20 sm:pb-24 bg-pink-100'>
+        <div className="max-w-2xl mx-auto px-4 sm:px-6">
+          <RouterLink
+            to="/"
+            className="inline-block px-3 py-1.5 sm:px-4 sm:py-2 text-sm sm:text-base bg-blue-300 hover:bg-blue-200 font-medium rounded-sm mb-4 whitespace-nowrap"
+          >
+            ← Back to Home
+          </RouterLink>
+        </div>
+        <div className="max-w-2xl mx-auto p-2 sm:p-6 bg-orange-200 border-2 border-black shadow-neo mt-2">
           <h2 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 text-black">Share Your Thoughts<span className="animate-pulse text-black">_</span></h2>
           {success && (
             <div className="mb-4 p-3 bg-green-100 text-green-700 flex items-center">
