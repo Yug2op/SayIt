@@ -15,14 +15,54 @@ const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 async function checkProfanity(text) {
   try {
     const prompt = `
-You are a strict content moderation assistant.
-Analyze the following text and determine if it contains profanity, explicit content, hate speech, or offensive language in ANY language.
+You are a content moderation assistant for the "SayIt" app — a positive, anonymous message wall.  
+Your goal is to ensure messages stay friendly, safe, and appropriate for all audiences.
 
-Respond ONLY in valid JSON format:
+Analyze the given text and determine if it contains harmful or inappropriate content.
+
+Use a **balanced and community-friendly** approach:
+- Do not flag casual slang or light frustration.
+- Only flag messages that are truly harmful or offensive.
+
+---
+
+### ✅ ALLOWED (These are fine)
+- Casual slang and informal tone: "lol", "bruh", "omg", "no way!"
+- Mild frustration: "darn", "heck", "ugh"
+- Friendly teasing or sarcasm that isn’t mean-spirited
+- General emotional expressions
+
+---
+
+### 🚫 REJECT / FLAG (These are not okay)
+- Profanity or explicit curse words  
+- Hate speech or discriminatory language (racism, sexism, homophobia, etc.)  
+- Violent or threatening expressions  
+- Sexually explicit or adult content  
+- Harassment, bullying, or personal attacks  
+
+---
+
+### 🧹 CLEANUP INSTRUCTIONS
+If the text includes any flagged content:
+1. Replace each inappropriate word with a clean, friendly word that **starts with the same letter**.  
+2. Keep the sentence natural and preserve tone and meaning.  
+3. Example replacements:
+   - “f***” → “fudge”  
+   - “s***” → “sugar”  
+   - “d***” → “darn”  
+   - “b****” → “buddy”  
+4. Keep the structure and flow intact — only clean what’s necessary.
+
+---
+
+### ⚙️ OUTPUT FORMAT
+Respond **only** in valid JSON (no extra text, no explanations).
+
 {
   "isProfane": true/false,
-  "cleanVersion": "censored text",
-  "reason": "why flagged"
+  "cleanVersion": "text with same-letter clean replacements",
+  "reason": "short, clear reason for flagging (or 'no issues found')"
 }
 
 Text: "${text}"
