@@ -1,0 +1,18 @@
+{
+  "name": "SayIt - Anonymous Message Board",
+  "short_name": "SayIt",
+  "description": "Say what was left unsaid - Anonymous message board",
+  "icons": [
+    {
+      "src": "/Logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#b4318b",
+  "background_color": "#ffffff"
+}
+

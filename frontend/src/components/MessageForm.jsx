@@ -188,7 +188,7 @@ function MessageForm() {
   const isRateLimited = submissionCount >= MAX_SUBMISSIONS && timeRemaining;
 
   return (
-    <div className="min-h-screen bg-teal">
+    <div className="min-h-[100dvh] bg-teal">
       {/* Navigation */}
       <nav className="fixed left-0 top-0 z-20 w-full h-[60px] sm:h-[70px] border-b-4 border-black bg-gray-100 px-3 sm:px-5">
         <div className="mx-auto flex h-full w-full max-w-[1300px] items-center justify-between">
@@ -199,7 +199,7 @@ function MessageForm() {
           </div>
         </div>
       </nav>
-      <main className='bg-[linear-gradient(to_right,#80808033_1px,transparent_1px),linear-gradient(to_bottom,#80808033_1px,transparent_1px)] bg-[size:70px_70px] pt-16 sm:pt-24 pb-20 sm:pb-24 bg-pink-100'>
+      <main className='bg-[linear-gradient(to_right,#80808033_1px,transparent_1px),linear-gradient(to_bottom,#80808033_1px,transparent_1px)] bg-[size:70px_70px] pt-[80px] pb-8 sm:pt-24 sm:pb-24 bg-pink-100 min-h-[100dvh]'>
         <div className="max-w-2xl mx-auto px-4 sm:px-6">
           <RouterLink
             to="/"
@@ -208,30 +208,30 @@ function MessageForm() {
             ← Back to Home
           </RouterLink>
         </div>
-        <div className="max-w-2xl mx-auto p-2 sm:p-6 bg-orange-200 border-2 border-black shadow-neo mt-2">
+        <div className="max-w-2xl mx-auto p-3 sm:p-6 bg-orange-200 border-2 border-black shadow-neo mt-2 mb-4">
           <h2 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 text-black">Share Your Thoughts<span className="animate-pulse text-black">_</span></h2>
           {success && (
-            <div className="mb-4 p-3 bg-green-100 text-green-700 flex items-center">
-              <CheckCircle className="mr-2" />
-              Message sent successfully! Redirecting...
+            <div className="mb-4 p-3 bg-green-100 text-green-700 flex items-start flex-wrap gap-2">
+              <CheckCircle className="mr-2 flex-shrink-0" />
+              <span className="flex-1 break-words">Message sent successfully! Redirecting...</span>
             </div>
           )}
 
           {isRateLimited && (
-            <div className="mb-4 p-3 bg-yellow-100 text-yellow-700 flex items-center">
-              <Clock className="mr-2" />
-              You've reached the limit of {MAX_SUBMISSIONS} messages per hour. Please try again in {timeRemaining} minutes.
+            <div className="mb-4 p-3 bg-yellow-100 text-yellow-700 flex items-start flex-wrap gap-2">
+              <Clock className="mr-2 flex-shrink-0" />
+              <span className="flex-1 break-words">You've reached the limit of {MAX_SUBMISSIONS} messages per hour. Please try again in {timeRemaining} minutes.</span>
             </div>
           )}
 
           {error && !isRateLimited && (
-            <div className="mb-4 p-3 bg-red-100 text-red-700 flex items-center">
-              <AlertCircle className="mr-2" />
-              {error}
+            <div className="mb-4 p-3 bg-red-100 text-red-700 flex items-start flex-wrap gap-2">
+              <AlertCircle className="mr-2 flex-shrink-0" />
+              <span className="flex-1 break-words">{error}</span>
               {cleanVersion && (
                 <button
                   onClick={useCleanVersion}
-                  className="ml-2 text-sm underline hover:text-red-900"
+                  className="ml-auto text-sm underline hover:text-red-900 whitespace-nowrap"
                 >
                   Use suggested version
                 </button>
